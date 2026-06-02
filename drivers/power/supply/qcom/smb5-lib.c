@@ -5161,14 +5161,9 @@ int smblib_get_prop_smb_health(struct smb_charger *chg)
 	return POWER_SUPPLY_HEALTH_COOL;
 }
 
-#define SDP_CURRENT_UA			500000
-#define CDP_CURRENT_UA			1500000
-#define DCP_CURRENT_UA			1600000
-#define HVDCP_CURRENT_UA		2800000
-#define HVDCP_START_CURRENT_UA		1000000
-#define TYPEC_DEFAULT_CURRENT_UA	900000
-#define TYPEC_MEDIUM_CURRENT_UA		1500000
-#define TYPEC_HIGH_CURRENT_UA		3000000
+
+#define HVDCP_START_CURRENT_UA		3000000
+#define TYPEC_DEFAULT_CURRENT_UA	4500000
 
 int smblib_get_prop_die_health(struct smb_charger *chg)
 {
