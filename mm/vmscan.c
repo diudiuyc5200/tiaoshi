@@ -6006,8 +6006,16 @@ static int balance_pgdat(pg_data_t *pgdat, int order, int classzone_idx)
 		 * progress in reclaiming pages
 		 */
 		nr_reclaimed = sc.nr_reclaimed - nr_reclaimed;
-		if (raise_priority || !nr_reclaimed)
+		if (!nr_reclaimed && sc.priority <= DEF_PRIORITY - 8)
+			break;
+		
+		if (raise_priority)
 			sc.priority--;
+		else if (!nr_reclaimed)
+			sc.priority -= 2;
+		
+		if (sc.priority < DEF_PRIORITY - 8)
+			sc.priority = DEF_PRIORITY - 8;
 	} while (sc.priority >= 1);
 
 	if (!sc.nr_reclaimed)
