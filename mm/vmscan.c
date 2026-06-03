@@ -5986,6 +5986,8 @@ static int balance_pgdat(pg_data_t *pgdat, int order, int classzone_idx)
 		if (kswapd_shrink_node(pgdat, &sc))
 			raise_priority = false;
 
+		cond_resched();
+		
 		/*
 		 * If the low watermark is met there is no need for processes
 		 * to be throttled on pfmemalloc_wait as they should not be
