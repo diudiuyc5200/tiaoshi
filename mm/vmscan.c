@@ -2451,6 +2451,9 @@ static void get_scan_count(struct lruvec *lruvec, struct mem_cgroup *memcg,
 	anon_prio = swappiness;
 	file_prio = 200 - anon_prio;
 
+	if (file_prio < 20)
+	file_prio = 20;
+	
 	/*
 	 * OK, so we have swap space and a fair amount of page cache
 	 * pages.  We use the recently rotated / recently scanned
