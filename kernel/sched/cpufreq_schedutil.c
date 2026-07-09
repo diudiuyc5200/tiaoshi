@@ -784,15 +784,17 @@ static int sugov_init(struct cpufreq_policy *policy)
 		goto stop_kthread;
 	}
 
-	tunables->up_rate_limit_us =
-				cpufreq_policy_transition_delay_us(policy);
-	tunables->down_rate_limit_us =
-				cpufreq_policy_transition_delay_us(policy);
-	tunables->iowait_boost_enable = false;
+	if (policy->cpu >= 4) {
+		tunables->up_rate_limit_us = 500;
+		tunables->down_rate_limit_us = 60000;  /* 60ms，降频慢 */
+	} else {
+		tunables->up_rate_limit_us = 500;
+		tunables->down_rate_limit_us = 5000;   /* 5ms，降频快 */
+	}
 
 	policy->governor_data = sg_policy;
 	sg_policy->tunables = tunables;
-	stale_ns = sched_ravg_window + (sched_ravg_window >> 3);
+	stale_ns = sched_ravg_window / 2;
 
 	sugov_tunables_restore(policy);
 
