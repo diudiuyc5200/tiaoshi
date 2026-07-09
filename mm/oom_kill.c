@@ -43,6 +43,8 @@
 #include <linux/mmu_notifier.h>
 #include <linux/memory_hotplug.h>
 #include <linux/show_mem_notifier.h>
+#include <linux/pid.h>
+#include <linux/syscalls.h>
 
 #include <asm/tlb.h>
 #include "internal.h"
