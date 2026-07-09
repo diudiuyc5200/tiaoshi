@@ -24,7 +24,7 @@
 #define SUGOV_KTHREAD_PRIORITY	50
 #define UP_RATE_LIMIT_US		(500)
 #define DOWN_RATE_LIMIT_US		(20000)
-#define UTIL_BOOST_FACTOR 120
+#define UTIL_BOOST_FACTOR 130
 
 struct sugov_tunables {
 	struct gov_attr_set attr_set;
